@@ -10,14 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^4.3.1",
-    "electron": "^6.0.0",
+    "bootstrap": "^4.5.2",
+    "electron": "^9.1.2",
     "electron-window-state": "^5.0.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.1",
     "jsmediatags": "^3.9.3",
-    "vazir-font": "^20.1.0"
+    "vazir-font": "^26.0.2"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.10.1"
+    "@fortawesome/fontawesome-free": "^5.14.0"
   }
 }
