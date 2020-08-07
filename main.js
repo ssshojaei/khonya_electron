@@ -43,6 +43,7 @@ const createWindow = () => {
 		mainWin.show()
 		splashWin.close()
 	}, 2000)
+
 	// mainWin.on('ready-to-show', () => {
 	//     mainWin.show()
 	//     splashWin.close()
@@ -69,7 +70,6 @@ const setContext = () => {
 
 ipcMain.on('setStatus', (e, arg) => {
 	status = arg
-	console.log(status, arg)
 	setContext()
 })
 
@@ -85,8 +85,7 @@ const createMenu = () => {
 			submenu: [
 				{
 					label: 'Open',
-					// click: () => ipcMain.send('openFiles'),
-					click: () => mainWin.webContents.send('openFiles', 'whoooooooh!'),
+					click: () => mainWin.webContents.send('openFiles'),
 				},
 			],
 		},

@@ -16,20 +16,23 @@ const playlist = []
 let current = -1
 const icon = document.querySelector('#btn_play > ion-icon')
 
-//updated
 const handelPlayPause = () => {
-	if (player.paused) {
-		player.play()
-		icon.name = 'pause-outline'
-		ipcRenderer.send('setStatus', 'نگه‌داشتن')
-		new Notification({
-			title: playlist[current].title,
-			body: `${playlist[current].year} - ${playlist[current].artist}`,
-		}).show()
+	if (playlist.length) {
+		if (player.paused) {
+			player.play()
+			icon.name = 'pause-outline'
+			ipcRenderer.send('setStatus', 'نگه‌داشتن')
+			new Notification({
+				title: playlist[current].title,
+				body: `${playlist[current].year} - ${playlist[current].artist}`,
+			}).show()
+		} else {
+			player.pause()
+			icon.name = 'play-outline'
+			ipcRenderer.send('setStatus', 'پخش')
+		}
 	} else {
-		player.pause()
-		icon.name = 'play-outline'
-		ipcRenderer.send('setStatus', 'پخش')
+		alert('آهنگی یافت نشد')
 	}
 }
 
@@ -40,7 +43,6 @@ const handelGoForward = () => {
 	current <= playlist.length && play_item(current + 1)
 }
 
-//new
 const openFiles = () => {
 	dialog
 		.showOpenDialog({
@@ -56,9 +58,9 @@ const openFiles = () => {
 			res.filePaths.map((file) => insert_media(file))
 		})
 }
-//new
+
 ipcRenderer.on('openFiles', openFiles)
-//new
+
 ipcRenderer.on('controller', (e, arg) => {
 	switch (arg) {
 		case 'prev':
@@ -187,7 +189,6 @@ dropArea.ondragleave = () => false
 
 dropArea.ondragend = () => false
 
-//updated
 dropArea.ondrop = (event) => {
 	event.preventDefault()
 	for (let file of event.dataTransfer.files) {
